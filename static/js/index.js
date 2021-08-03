@@ -68,7 +68,21 @@ socket.on('create', function(success) {
 $beginButton.on('click', async function() { 
     let reset_data = newData
     socket.emit('reset', reset_data)
-    window.location = '/quiz' + newData.room
+
+    var data = $startForm.serialize();
+
+    //$.post( "/quiz" + newData, data);
+
+    $.ajax({
+        url: "/quiz" + newData,
+        type: "POST",
+        data:data,
+        dataType: "json",
+        success: function(response) {
+            window.location.href = response.redirect
+        }
+    });
+
 });
 
 

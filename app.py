@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
 import os
 import requests
@@ -134,9 +134,137 @@ def leaderboard():
 
     return render_template('leaderboard.html')
 
-@app.route("/quiz<room>")
+@app.route("/quiz<room>", methods=["POST"])
 def quiz(room):
-    return render_template('quiz.html')
+    global amount_2
+    global nickname_2
+
+    categories_list = ['food_and_drink', 'art_and_literature', 'movies', 'music', 'society_and_culture', 'sport_and_leisure', 'geography']
+    amount_2 = request.form.get("amount")
+    category_2 = request.form.get("category")
+    difficulty_2 = request.form.get("difficulty")
+    nickname_2 = request.form.get("nickname")
+    print(nickname_2)
+
+
+    # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
+    if (category_2 in categories_list):
+        url = getNewUrl(amount_2,category_2)
+        Json = getNewJson(url)
+        correct_answers, final_answers, question_list = newToDict(Json)
+
+    else:
+        url = getUrl(amount_2, category_2,difficulty_2)
+        Json = getJson(url)
+        correct_answers, final_answers, question_list = toDict(Json)
+    
+
+    return quiz(correct_answers, final_answers, question_list)
+
+
+
+def getNewUrl(amount,category):
+    print('MADE IT TO GET NEW URL')
+    base_url = 'https://trivia.willfry.co.uk/api/questions?'
+    final_url = base_url + 'limit=' + str(amount)
+    # print('before, ', final_url)
+    if category != 'default_c':
+        final_url = base_url + 'categories=' + category + '&limit=' + str(amount)
+        # print(final_url)
+    return final_url
+
+
+def getNewJson(url):
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+
+def newToDict(json):
+    correct = []
+    answers = []
+    temp_list = []
+    for value in json:
+        #print(value['question'])
+        question_list.append(value['question'])
+        correct_answers.append(value['correctAnswer'])
+        correct = value['correctAnswer']
+        # Grabs only 3 incorrect answers to make sure corect answer will always be on screen
+        answers = value['incorrectAnswers'][:3]
+        answers.append(correct)
+        random.shuffle(answers)
+        final_answers.append(answers)
+    return correct_answers, final_answers, question_list
+
+
+def getUrl(amount, category, difficulty):
+    Base_url = 'https://opentdb.com/api.php?amount=' + str(amount)
+    final_url = Base_url
+    # categoryA
+    if category != 'default_c':
+        final_url = final_url + '&category=' + str(category)
+    
+    final_url = final_url + '&type=multiple'
+
+    return final_url
+
+
+def getJson(final_url):
+    response = requests.get(final_url)
+    data = response.json()
+    return data
+
+
+def toDict(json_data):
+    correct = []
+    answers = []
+    for value in json_data['results']:
+        # print(value)
+        # questions.append(value['question'])
+        question_list.append(value['question'])
+        correct_answers.append(value['correct_answer'])
+        correct = value['correct_answer']
+        answers = value['incorrect_answers']
+        answers.append(correct)
+        random.shuffle(answers)
+        final_answers.append(answers)
+    print('q list ', question_list)
+    # print('f answers ', final_answers)
+    # print('c list' , correct_list)
+
+    return correct_answers, final_answers, question_list
+
+
+def quiz(correct_answers, final_answers, question_list):
+    #print("camehere")
+    #start stopwatch
+    global start_time
+    start_time = time.time()
+    question_name = question_list[0]
+
+    return jsonify({'redirect': url_for("example", question_name=question_name)})
+
+@app.route('/example/<question_name>')
+def example(question_name):
+    question_name = question_name
+    return render_template(
+        'quiz.html',
+        question='1) ' +
+        html.unescape(question_name),
+        answer1=html.unescape(
+            final_answers[0][0]),
+        answer2=html.unescape(
+            final_answers[0][1]),
+        answer3=html.unescape(
+            final_answers[0][2]),
+        answer4=html.unescape(
+            final_answers[0][3]))
+
+
+next_que = 0
+score = 0
+
+
 
 def is_admin(id, room):
     return rooms[room] == id
@@ -210,112 +338,5 @@ def on_score(data):
         emit('score', { 'leaderboard' : leaderboard }, room=room)
 
 
-
-
-
-def getNewUrl(amount,category):
-    print('MADE IT TO GET NEW URL')
-    base_url = 'https://trivia.willfry.co.uk/api/questions?'
-    final_url = base_url + 'limit=' + str(amount)
-    # print('before, ', final_url)
-    if category != 'default_c':
-        final_url = base_url + 'categories=' + category + '&limit=' + str(amount)
-        # print(final_url)
-    return final_url
-
-
-def getNewJson(url):
-    response = requests.get(url)
-    data = response.json()
-    return data
-
-
-def newToDict(json):
-    correct = []
-    answers = []
-    temp_list = []
-    for value in json:
-        #print(value['question'])
-        question_list.append(value['question'])
-        correct_answers.append(value['correctAnswer'])
-        correct = value['correctAnswer']
-        # Grabs only 3 incorrect answers to make sure corect answer will always be on screen
-        answers = value['incorrectAnswers'][:3]
-        answers.append(correct)
-        random.shuffle(answers)
-        final_answers.append(answers)
-    return correct_answers, final_answers, question_list
-
-
-def getUrl(amount, category, difficulty):
-    Base_url = 'https://opentdb.com/api.php?amount=' + str(amount)
-    final_url = Base_url
-    # categoryA
-    if category != 'default_c':
-        final_url = final_url + '&category=' + str(category)
-
-    # difficulty
-    if difficulty != 'default_d':
-        final_url = final_url + '&difficulty=' + str(difficulty)
-    
-    final_url = final_url + '&type=multiple'
-
-    return final_url
-
-
-def getJson(final_url):
-    response = requests.get(final_url)
-    data = response.json()
-    return data
-
-
-def toDict(json_data):
-    correct = []
-    answers = []
-    for value in json_data['results']:
-        # print(value)
-        # questions.append(value['question'])
-        question_list.append(value['question'])
-        correct_answers.append(value['correct_answer'])
-        correct = value['correct_answer']
-        answers = value['incorrect_answers']
-        answers.append(correct)
-        random.shuffle(answers)
-        final_answers.append(answers)
-    print('q list ', question_list)
-    # print('f answers ', final_answers)
-    # print('c list' , correct_list)
-
-    return correct_answers, final_answers, question_list
-
-
-
-
-
-
-def quiz(correct_answers, final_answers, question_list):
-    #start stopwatch
-    global start_time
-    start_time = time.time()
-    question_name = question_list[0]
-
-    return render_template(
-        'quiz.html',
-        question='1) ' +
-        html.unescape(question_name),
-        answer1=html.unescape(
-            final_answers[0][0]),
-        answer2=html.unescape(
-            final_answers[0][1]),
-        answer3=html.unescape(
-            final_answers[0][2]),
-        answer4=html.unescape(
-            final_answers[0][3]))
-
-
-next_que = 0
-score = 0
-
-            
 if __name__ == '__main__':
     socketio.run(app, debug=True)
