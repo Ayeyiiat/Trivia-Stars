@@ -21,4 +21,3 @@ sqlalchemy
 pandas
 pandas.io
 warnings
-
