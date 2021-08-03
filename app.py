@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
 import os
 import requests
@@ -141,20 +141,20 @@ def quiz(room):
 
     categories_list = ['food_and_drink', 'art_and_literature', 'movies', 'music', 'society_and_culture', 'sport_and_leisure', 'geography']
     amount_2 = request.form.get("amount")
-    category = request.form.get("category")
-    difficulty = request.form.get("difficulty")
+    category_2 = request.form.get("category")
+    difficulty_2 = request.form.get("difficulty")
     nickname_2 = request.form.get("nickname")
     print(nickname_2)
 
 
     # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
-    if (category in categories_list):
-        url = getNewUrl(amount_2,category)
+    if (category_2 in categories_list):
+        url = getNewUrl(amount_2,category_2)
         Json = getNewJson(url)
         correct_answers, final_answers, question_list = newToDict(Json)
 
     else:
-        url = getUrl(amount_2, category,difficulty)
+        url = getUrl(amount_2, category_2,difficulty_2)
         Json = getJson(url)
         correct_answers, final_answers, question_list = toDict(Json)
     
@@ -203,10 +203,6 @@ def getUrl(amount, category, difficulty):
     # categoryA
     if category != 'default_c':
         final_url = final_url + '&category=' + str(category)
-
-    # difficulty
-    if difficulty != 'default_d':
-        final_url = final_url + '&difficulty=' + str(difficulty)
     
     final_url = final_url + '&type=multiple'
 
@@ -240,12 +236,17 @@ def toDict(json_data):
 
 
 def quiz(correct_answers, final_answers, question_list):
-    print("camehere")
+    #print("camehere")
     #start stopwatch
     global start_time
     start_time = time.time()
     question_name = question_list[0]
 
+    return jsonify({'redirect': url_for("example", question_name=question_name)})
+
+@app.route('/example/<question_name>')
+def example(question_name):
+    question_name = question_name
     return render_template(
         'quiz.html',
         question='1) ' +

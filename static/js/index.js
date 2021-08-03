@@ -71,20 +71,18 @@ $beginButton.on('click', async function() {
 
     var data = $startForm.serialize();
 
-    $.post( "/quiz" + newData, data );
+    //$.post( "/quiz" + newData, data);
 
-    /*$.ajax(
-        url: 
-        
+    $.ajax({
+        url: "/quiz" + newData,
+        type: "POST",
+        data:data,
         dataType: "json",
-        /*success: function (resp) {
-            window.location.href = "/business/dashboard/";
-        },
-        error: function (resp) {
-        // console.log(resp.responseJSON);
-        displayErrorMessageLogin(resp.responseJSON);
+        success: function(response) {
+            window.location.href = response.redirect
         }
-    );*/
+    });
+
 });
 
 
