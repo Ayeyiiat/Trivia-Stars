@@ -45,7 +45,7 @@ def clearTables():
         warnings.simplefilter("ignore")
         sql.execute('DROP TABLE IF EXISTS leader_board', engine)
 
-# testing = [['name1', '7', '5:00'], ['name2', '5', '2:20'], ['name3', '2', '5:25'], ['name4', '51', '51:20']]
-# addData_save(testing)
+#testing = [['name1', '7', '5:00'], ['name2', '5', '2:20'], ['name3', '2', '5:25'], ['name4', '51', '51:20']]
+#addData_save(testing)
 
-clearTables()
+#clearTables()

@@ -5,13 +5,13 @@ import random
 def get_three_memes():
    
     #top memepages are picked randomly
-    bestmemes_pages = ['wholesomemems', 'dankmemes', 'memes', 'raimimemes']    
+    bestmemes_pages = ['wholesomemems', 'dankmemes', 'memes', 'raimimemes', 'cleanmemes']    
     memePage = random.randint(0, len(bestmemes_pages)-1)
     subreddit_name = bestmemes_pages[memePage]
       
      
     #api request is made
-    url =  'https://meme-api.herokuapp.com/gimme/' + subreddit_name + '/50'
+    url =  'https://meme-api.herokuapp.com/gimme/' + subreddit_name + '/20'
     response = requests.get(url)
     data = response.json()
       
@@ -20,7 +20,7 @@ def get_three_memes():
     sorted_ups = {}    
        
     #range of how many memes are called  
-    for x in range(0, 49):
+    for x in range(0, 18):
      
        jpgLink = data['memes'][x]['url']
        is_nsfw = data['memes'][x]['nsfw']
@@ -37,6 +37,14 @@ def get_three_memes():
     for i in sorted (dict_jpgups.keys(), reverse=True):
       sorted_ups[i] = dict_jpgups[i]
 
-    print(sorted_ups)
+    #print(sorted_ups)
+    
+    final_list_memes = list(sorted_ups.values())
+#     print(final_list_memes[0])
+#     print(final_list_memes[1])
+#     print(final_list_memes[2])
+
+    return final_list_memes[0], final_list_memes[1], final_list_memes[2]
+
    
-get_three_memes()
+#get_three_memes()
