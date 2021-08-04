@@ -79,44 +79,44 @@ def next_question():
     global amount
     global score
 
-    
     if played_solo:
 
         answer = request.form.get("answers")
 
 
-    if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
-        print(final_answers[next_que][int(answer)])
-        print(correct_answers[next_que])
-        score += 1
+        if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+            print(final_answers[next_que][int(answer)])
+            print(correct_answers[next_que])
+            score += 1
 
-    print('NEXT QUE: ', next_que)
-    print('AMOUNT ', amount)
-    if int(next_que + 1) == int(amount):
-        print('NEXT QUE: in if ', next_que)
-        print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount)
-        return redirect(link)
-        # print(score)
+        print('NEXT QUE: ', next_que)
+        print('AMOUNT ', amount)
+        if int(next_que + 1) == int(amount):
+            print('NEXT QUE: in if ', next_que)
+            print('\n\n\nLAST QUESTION\n\n\n\n')
+            link = "/display_score/" + str(score) + str(amount)
+            return redirect(link)
+            # print(score)
 
-    next_que += 1
-    print('SHOULD START AT 1', next_que)
-    print('final answers: ')
-    print(final_answers)
-    question_name = question_list[next_que]
+        next_que += 1
+        print('SHOULD START AT 1', next_que)
+        print('final answers: ')
+        print(final_answers)
+        question_name = question_list[next_que]
 
-    return render_template(
-        'solo_quiz.html',
-        question=str(
-        next_que + 1) + ") " + html.unescape(question_name),
-        answer1=html.unescape(
-        final_answers[next_que][0]),
-        answer2=html.unescape(
-        final_answers[next_que][1]),
-        answer3=html.unescape(
-        final_answers[next_que][2]),
-        answer4=html.unescape(
-        final_answers[next_que][3]))
+        return render_template(
+            'solo_quiz.html',
+            question=str(
+            next_que + 1) + ") " + html.unescape(question_name),
+            answer1=html.unescape(
+            final_answers[next_que][0]),
+            answer2=html.unescape(
+            final_answers[next_que][1]),
+            answer3=html.unescape(
+            final_answers[next_que][2]),
+            answer4=html.unescape(
+            final_answers[next_que][3]))
+
 
 
 @app.route('/next/question/2', methods=["POST"])
@@ -133,15 +133,15 @@ def next_question_2():
     answer = request.form.get("answers")
   
 
-    if(final_answers[1][int(answer)] == correct_answers[1]):
-        print(final_answers[1][int(answer)])
-        print(correct_answers[1])
+    if(final_answers[0][int(answer)] == correct_answers[0]):
+        print(final_answers[0][int(answer)])
+        print(correct_answers[0])
         score += 1
     
     if int(amount_2) == 1:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
         
@@ -174,15 +174,15 @@ def next_question_3():
 
     answer = request.form.get("answers")
 
-    if(final_answers[2][int(answer)] == correct_answers[2]):
-        print(final_answers[2][int(answer)])
-        print(correct_answers[2])
+    if(final_answers[1][int(answer)] == correct_answers[1]):
+        print(final_answers[1][int(answer)])
+        print(correct_answers[1])
         score += 1
     
     if int(amount_2) == 2:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
         
@@ -215,15 +215,17 @@ def next_question_4():
 
     answer = request.form.get("answers")
 
-    if(final_answers[3][int(answer)] == correct_answers[3]):
-        print(final_answers[3][int(answer)])
-        print(correct_answers[3])
+    if(final_answers[2][int(answer)] == correct_answers[2]):
+        print(final_answers[2][int(answer)])
+        print(correct_answers[2])
         score += 1
     
     if int(amount_2) == 3:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
+        print('SCORE: ', score)
+        print('AMOUNT: ', amount_2)
         return redirect(link)
         # print(score)
         
@@ -255,15 +257,15 @@ def next_question_5():
 
     answer = request.form.get("answers")
 
-    if(final_answers[4][int(answer)] == correct_answers[4]):
-        print(final_answers[4][int(answer)])
-        print(correct_answers[4])
+    if(final_answers[3][int(answer)] == correct_answers[3]):
+        print(final_answers[3][int(answer)])
+        print(correct_answers[3])
         score += 1
 
     if int(amount_2) == 4:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
         
@@ -295,18 +297,17 @@ def next_question_6():
 
     answer = request.form.get("answers")
 
-    if(final_answers[5][int(answer)] == correct_answers[5]):
-        print(final_answers[5][int(answer)])
-        print(correct_answers[5])
+    if(final_answers[4][int(answer)] == correct_answers[4]):
+        print(final_answers[4][int(answer)])
+        print(correct_answers[4])
         score += 1
     
     if int(amount_2) == 5:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
-        
     print(final_answers)
     question_name = question_list[5]
 
@@ -335,18 +336,18 @@ def next_question_7():
 
     answer = request.form.get("answers")
 
-    if(final_answers[6][int(answer)] == correct_answers[6]):
-        print(final_answers[6][int(answer)])
-        print(correct_answers[6])
+    if(final_answers[5][int(answer)] == correct_answers[5]):
+        print(final_answers[5][int(answer)])
+        print(correct_answers[5])
         score += 1
     
     if int(amount_2) == 6:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
-        return redirect(link)
-        # print(score)
+        link = "/leaderboard/"
         
+        return redirect(link)
+
     print(final_answers)
     question_name = question_list[6]
 
@@ -375,18 +376,17 @@ def next_question_8():
 
     answer = request.form.get("answers")
 
-    if(final_answers[7][int(answer)] == correct_answers[7]):
-        print(final_answers[7][int(answer)])
-        print(correct_answers[7])
+    if(final_answers[6][int(answer)] == correct_answers[6]):
+        print(final_answers[6][int(answer)])
+        print(correct_answers[6])
         score += 1
     
     if int(amount_2) == 7:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
-        
     print(final_answers)
     question_name = question_list[7]
 
@@ -415,15 +415,16 @@ def next_question_9():
 
     answer = request.form.get("answers")
 
-    if(final_answers[8][int(answer)] == correct_answers[8]):
-        print(final_answers[8][int(answer)])
-        print(correct_answers[8])
+    if(final_answers[7][int(answer)] == correct_answers[7]):
+        print(final_answers[7][int(answer)])
+        print(correct_answers[7])
         score += 1
     
     if int(amount_2) == 8:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
+
         return redirect(link)
         # print(score)
         
@@ -455,15 +456,15 @@ def next_question_10():
 
     answer = request.form.get("answers")
 
-    if(final_answers[9][int(answer)] == correct_answers[9]):
-        print(final_answers[9][int(answer)])
-        print(correct_answers[9])
+    if(final_answers[8][int(answer)] == correct_answers[8]):
+        print(final_answers[8][int(answer)])
+        print(correct_answers[8])
         score += 1
     
     if int(amount) == 9:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
-        link = "/display_score/" + str(score) + str(amount_2)
+        link = "/leaderboard/"
         return redirect(link)
         # print(score)
         
@@ -504,7 +505,7 @@ def display_score(score, amount):
 def about():
     return render_template('about.html')
 
-@app.route("/leaderboard")
+@app.route("/leaderboard/")
 def leaderboard():
 
     return render_template('leaderboard.html')
