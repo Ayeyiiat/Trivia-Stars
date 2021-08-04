@@ -11,7 +11,7 @@ body {
 #logo {
     height: 90px;
     width: 90px;
-    margin: -10px 56px -21px;
+    margin: -28px 56px -21px;
     cursor: pointer;
     
 }
@@ -56,14 +56,18 @@ li {
 }
 
 label {
-    width: 50px;
-    height: 50px;
-    background-color: #2d0250;
+    width: 63%;
+    height: 115px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgb(214, 59, 251, 0.43);
+    background-size: cover;
+    margin: 10px 281px 0px
 }
 
 .container-fluid {
-    width: 1282px;
-    height: 231px;
+    width: 1272px;
+    height: 220px;
     border-radius: 25px;
     background-color: rgba(29, 185, 209, 0.43);
     background-size: cover;
@@ -71,7 +75,11 @@ label {
     color: #e37719;
     text-decoration: none solid rgb(227, 119, 25);
     text-align: center;
+    padding: 33px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
+
 
 label {
     width: 63%;
@@ -80,7 +88,7 @@ label {
     text-align: center;
     background-color: rgb(214, 59, 251, 0.43);
     background-size: cover;
-    margin: 10px 299px 0px;
+    margin: 10px 280px 0px;
 }
 label:hover {
     cursor: pointer;
@@ -95,9 +103,11 @@ button {
     width: 30%;
     height: 48px;
     text-align: center;
-    margin: 15px 592px 15px;
     background-color: rgba(29, 185, 209, 0.43);
-    border-radius: 25px;
+    border-radius: 15px;
+    margin-left: 539px;
+    margin-top: 25px;
+    margin-bottom: 21px;
 }
 button:hover {
     cursor: pointer;
@@ -112,5 +122,13 @@ button:hover {
 img {
     width: 90px;
     height: 90px;
-    margin: 10px 10px 10px -805px;
+    margin: 9px 12px 3px;
+    float: left;
+}
+h4 {
+    text-align: left;
+    font-size: 25px;
+    color: #e37719;
+    line-height: 0px;
+    margin: 55px 132px 10px;
 }
