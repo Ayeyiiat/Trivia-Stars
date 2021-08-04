@@ -5,6 +5,7 @@ import requests
 import random
 import html
 import time
+from score_keeper import leaderboard_data, sort_score_list
 
 app = Flask(__name__)
 SECRET_KEY = "51"
@@ -545,10 +546,18 @@ def leaderboard():
     # print('total questions: ', total_questions)
     percent_correct = score/float(total_questions)
     # print('percent correct: ', percent_correct)
-    score_list = [nickname_2, score, int(amount_2), percent_correct]
-    
+    score_list = [roomName, score, int(total_questions), percent_correct]
+    leaderboard_data(score_list)
+    new_list = sort_score_list()
+    print(new_list)
+    name1 = new_list[0][0]
+    score1 = new_list[0][1]
+    name2 = new_list[1][0]
+    score2 = new_list[1][1]
+    name3 = new_list[2][0]
+    score3 = new_list[2][1]  
     meme1, meme2, meme3 = get_three_memes()
-    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3)
+    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3, Player_1 = name2, Score_1 = score1, Player_2 = name2, Score_2 = score2, Player_3 = name3, Score_3 = score3 )
 
 # @app.route("/quiz_2<room>", methods=["POST"])
 # def quiz_2(room):
@@ -567,12 +576,14 @@ def leaderboard():
 def quiz(room):
     global amount_2
     global nickname_2
+    global roomName
 
     categories_list = ['food_and_drink', 'art_and_literature', 'movies', 'music', 'society_and_culture', 'sport_and_leisure', 'geography']
     amount_2 = request.form.get("amount")
     category_2 = request.form.get("category")
     difficulty_2 = request.form.get("difficulty")
     nickname_2 = request.form.get("nickname")
+    roomName = request.form.get("roomName")
     #print(nickname_2)
 
 
