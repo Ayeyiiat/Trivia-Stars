@@ -13,11 +13,7 @@ python-engineio==3.13.2
 python-socketio==4.6.0
 pytest
 pycodestyle
-os
-random
-html
-time
 sqlalchemy
 pandas
 pandas.io
-warnings
+
