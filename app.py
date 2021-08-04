@@ -1,3 +1,4 @@
+from memes import get_three_memes
 from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
 import requests
@@ -22,23 +23,19 @@ def home():
     global final_answers
     global amount
     global score
-    global database_list
     global played_solo
     global nickname
-    global all_names
-    global question_dict
-    global score_dict
+    global num_players
+    global num_done
+    num_done = 0
+    num_players = 0
     played_solo = False
     next_que = 0
     amount = 0
     score = 0
-    question_dict = {}
-    score_dict = {}
-    all_names = []
     question_list = []
     final_answers = []
     correct_answers = []
-    database_list = []
     return render_template("index.html")
 
 @app.route("/solo/game", methods=["POST"])
@@ -129,6 +126,7 @@ def next_question_2():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
   
@@ -142,7 +140,11 @@ def next_question_2():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -171,6 +173,7 @@ def next_question_3():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -183,7 +186,11 @@ def next_question_3():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -212,6 +219,7 @@ def next_question_4():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -224,9 +232,13 @@ def next_question_4():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
+        num_done +=1
         print('SCORE: ', score)
         print('AMOUNT: ', amount_2)
-        return redirect(link)
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -254,6 +266,7 @@ def next_question_5():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -266,7 +279,11 @@ def next_question_5():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -294,6 +311,7 @@ def next_question_6():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -306,7 +324,11 @@ def next_question_6():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
     print(final_answers)
     question_name = question_list[5]
@@ -333,6 +355,7 @@ def next_question_7():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -345,8 +368,11 @@ def next_question_7():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
 
     print(final_answers)
     question_name = question_list[6]
@@ -373,6 +399,7 @@ def next_question_8():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -385,7 +412,11 @@ def next_question_8():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
     print(final_answers)
     question_name = question_list[7]
@@ -412,6 +443,8 @@ def next_question_9():
     global score
     global new_name
     global question_dict
+    global num_done
+
 
     answer = request.form.get("answers")
 
@@ -424,8 +457,11 @@ def next_question_9():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-
-        return redirect(link)
+        num_done +=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -453,6 +489,7 @@ def next_question_10():
     global score
     global new_name
     global question_dict
+    global num_done
 
     answer = request.form.get("answers")
 
@@ -465,7 +502,11 @@ def next_question_10():
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/leaderboard/"
-        return redirect(link)
+        num_done+=1
+        if num_done == num_players:
+            return redirect(link)
+        else:
+            return '<script>alert("Please wait for the other players")</script>'
         # print(score)
         
     print(final_answers)
@@ -507,8 +548,8 @@ def about():
 
 @app.route("/leaderboard/")
 def leaderboard():
-
-    return render_template('leaderboard.html')
+    meme = get_three_memes()
+    return render_template('leaderboard.html', first_place = meme[0], second_place = meme[1], third_place = meme[2])
 
 # @app.route("/quiz_2<room>", methods=["POST"])
 # def quiz_2(room):
@@ -700,15 +741,13 @@ def on_admin_disconnect():
 @socketio.on('join')
 def on_join(data):
     #global all_names
-    global question_dict
-    global new_name
+    global num_players
     new_name = data['name']
-    #all_names.append(new_name)
-    question_dict[new_name] = 0
-    print('question_dict: ', question_dict)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
+    num_players+=1
+    print(f'There are now {num_players} players in this session.')
     print(f'{new_name} joined {room}')
 
 @socketio.on('buzz')
@@ -726,6 +765,7 @@ def exists(data):
 
 @socketio.on('create')
 def on_create(data):
+    global num_players
     room = data['room']
     if (room in rooms or len(room) < 3):
         emit('create', False)
@@ -733,6 +773,7 @@ def on_create(data):
         join_room(room)
         rooms[room] = request.sid
         emit('create', True)
+        num_players+=1
         #print(f'created room: {room}')
 
 @socketio.on('reset')
