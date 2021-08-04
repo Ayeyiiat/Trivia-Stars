@@ -87,6 +87,10 @@ label:hover {
     background-color: rgba(29, 185, 209, 0.43);
 }
 
+input[type=checkbox]:checked + label {
+    background-color:  rgba(29, 185, 209, 0.43);
+} 
+
 button {
     width: 30%;
     height: 48px;
