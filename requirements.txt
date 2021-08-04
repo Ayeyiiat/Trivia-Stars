@@ -17,4 +17,5 @@ pycodestyle
 sqlalchemy
 pandas
 pandas.io
+requests
 
