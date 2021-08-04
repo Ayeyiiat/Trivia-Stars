@@ -111,12 +111,17 @@ $joinForm.on('submit', function(event) {
   event.preventDefault()
   data.room = $roomField.val()
 <<<<<<< HEAD
+<<<<<<< HEAD
   data.name = $name.val()
   
 =======
   data.name = $nameField.val()
 
 >>>>>>> a1b3d95e0621fa329a6eac41ef708371017018ed
+=======
+  data.name = $nameField.val()
+
+>>>>>>> 231ee29788d3c39a97422cc3a6204b372392da8a
   socket.emit('exists', data)
 })
 
