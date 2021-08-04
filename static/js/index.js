@@ -98,10 +98,10 @@ socket.on('join', function(newData) {
 //Join game session
 var $joinForm = $('#join_game_id')
 var $roomField = $('#gameCodeInput')
-var $name = $('#name')
+var $nameField = $('#not_name')
 var data = {
-    room: $roomField, // get the first path
-    name: $name
+    name: $nameField,
+    room: $roomField // get the first path 
 }
 
 
@@ -110,8 +110,13 @@ $('body').addClass('center')
 $joinForm.on('submit', function(event) {
   event.preventDefault()
   data.room = $roomField.val()
+<<<<<<< HEAD
   data.name = $name.val()
   
+=======
+  data.name = $nameField.val()
+
+>>>>>>> a1b3d95e0621fa329a6eac41ef708371017018ed
   socket.emit('exists', data)
 })
 

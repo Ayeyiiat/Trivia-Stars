@@ -26,7 +26,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
 
       <!-- Custom styles for this template -->
-      <link rel="stylesheet" href="{{ url_for('static',    filename='css/quiz.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static',    filename='css/quiz5.css') }}">
 
 
       <script>
@@ -72,25 +72,25 @@
         </div>
 
         <div class = "formstuff">
-            <form name="answers_form" id="answers_id" method="POST" action="/next/question/2">
+            <form name="answers_form" id="answers_id" method="POST" action="/next/question/6">
                 <input type="checkbox" id="answer1" name="answers" value="0">
                 <label for="answer1" id="answer1">
-                    <img src = "{{ url_for('static', filename='images/a.png') }}"> <h4>{{ answer1 }}</h4> 
+                    <img src = "{{ url_for('static', filename='images/a.png') }}"> {{ answer1 }} 
                 </label><br>
     
                 <input type="checkbox" id="answer2" name="answers" value="1">
                 <label for="answer2" id="answer2">
-                    <img src = "{{ url_for('static', filename='images/b.png') }}"> <h4>{{ answer2 }}</h4> 
+                    <img src = "{{ url_for('static', filename='images/b.png') }}"> {{ answer2 }}
                 </label><br>
     
                 <input type="checkbox" id="answer3" name="answers" value="2">
                 <label for="answer3" id="answer3"> 
-                    <img src = "{{ url_for('static', filename='images/c.png') }}"> <h4>{{ answer3 }}</h4> 
+                    <img src = "{{ url_for('static', filename='images/c.png') }}"> {{ answer3 }}
                 </label><br>
     
                 <input type="checkbox" id="answer4" name="answers" value="3">
                 <label for="answer4" id="answer4">
-                    <img src = "{{ url_for('static', filename='images/d.png') }}"><h4>{{ answer4 }}</h4> 
+                    <img src = "{{ url_for('static', filename='images/d.png') }}"> {{ answer4 }}
                 </label><br>
     
                 <button type="submit" id="form_submit">NEXT</button>     

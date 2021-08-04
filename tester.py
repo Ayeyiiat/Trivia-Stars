@@ -32,6 +32,10 @@ class BasicTests(unittest.TestCase):
     '''def test_main_page(self):
         response = self.app.get('/solo/game', follow_redirects=True)
         self.assertEqual(response.status_code, 200)'''
+
+    def test_main_page(self):
+        response = self.app.get('/next/question/2', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
         
     
 if __name__ == "__main__":
