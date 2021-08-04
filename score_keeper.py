@@ -29,12 +29,12 @@ def reset_score_sheet():
    f.close()
    
 
-liste = ['name1', 5, 1, 13.58]
-list2 = ['name2', 6, 2, 10.2]
+# liste = ['name1', 5, 1, 13.58]
+# list2 = ['name2', 6, 2, 10.2]
 
-leaderboard_data(liste)
-leaderboard_data(list2)
+# leaderboard_data(liste)
+# leaderboard_data(list2)
 
-print(sort_score_list())
+# print(sort_score_list())
 
 #reset_score_sheet()
