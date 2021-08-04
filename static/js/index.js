@@ -104,11 +104,13 @@ var data = {
     name: $name
 }
 
+
 $('body').addClass('center')
 
 $joinForm.on('submit', function(event) {
   event.preventDefault()
   data.room = $roomField.val()
+  data.name = $name.val()
   
   socket.emit('exists', data)
 })
@@ -118,12 +120,12 @@ socket.on('exists', function(exists) {
       socket.emit('join', data);
       alert("You have joined a room. Wait for moderator to begin game");
       socket.emit('begin', data);
-      /*$.ajax({
+      $.ajax({
         url: "/quiz_2",
         success: function(response) {
             window.location.href = response.redirect
         }
-      });*/
+      });
 
       //window.location.href = '/quiz_2'
 

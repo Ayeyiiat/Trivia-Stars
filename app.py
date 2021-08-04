@@ -335,6 +335,7 @@ def on_admin_disconnect():
 @socketio.on('join')
 def on_join(data):
     name = data['name']
+    print(name)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
