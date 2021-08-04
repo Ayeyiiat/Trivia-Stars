@@ -11,14 +11,9 @@ flask_behind_proxy==0.1.1
 flask_sqlalchemy
 pytest
 pycodestyle
-flask
-flask_socketio
-os
-random
-html
-time
-sqlalchemy
-pandas
-pandas.io
-warnings
+
+
+
+
+
 
