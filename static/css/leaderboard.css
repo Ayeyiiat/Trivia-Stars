@@ -1,0 +1,112 @@
+body, html {
+	font-family: Poppins-Regular, sans-serif;
+    background: url('/static/images/wallpaper.gif');
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Poppins-Regular, sans-serif;
+    color: #e37719;
+    text-decoration: none solid rgb(227, 119, 25);
+    text-align: center;
+}
+
+.navbar {
+    background-color: #2d0250;
+    padding: 0px;
+    border-radius: 25px;
+
+}
+
+#logo {
+    height: 90px;
+    width: 90px;
+    margin: -10px 56px -21px;
+}
+
+ul {
+    list-style-type: none;
+}
+  
+.fa {
+    font-size: 52px;
+    color: #b504e1;
+    margin: 7px 37px -2px
+}
+
+.fa:hover {
+    color: white;
+}
+
+li {
+    float: left;
+    height: 67px;
+    border-radius: 25px;
+    margin: 7px 2px -8px;
+}
+
+.tablestuff {
+    width: 75%;
+    margin: 40px 274px 40px 162px;
+}
+
+#positionimage {
+    width: 804px;
+    height: 268px;
+    margin: 200px 500px -40px 375px;
+}
+
+table, th, td {
+    border: 1px solid white;
+    width: 100px;
+}
+
+
+#info {
+    border-radius: 50%;
+    background-color: #b504e1;
+    width: 73px;
+    height: 66px;
+    padding-right: 14px;
+    margin-right: -1px;
+}
+
+.fa-info {
+    color: black;
+    margin: 8px 27px 6px;
+}
+
+#first_place{
+    width: 40%;
+    height: 100%;
+    margin: 138px 500px -46px 706px;
+}
+
+#second_place{
+    width: 40%;
+    height: 100%;
+    margin: -75px 500px -46px 422px;
+}
+
+#third_place{
+    width: 40%;
+    height: 100%;
+    margin: -114px 500px -46px 985px;
+}
+
+.memes1{
+    width: 30%;
+    height: 200px;
+
+}
+
+/* .memes2{
+    width: 30%;
+    height: 200px;
+
+}
+
+.memes3{
+    width: 30%;
+    height: 200px;
+
+} */
