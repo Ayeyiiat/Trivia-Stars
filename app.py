@@ -1,13 +1,12 @@
 from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
-import os
 import requests
 import random
 import html
 import time
 
 app = Flask(__name__)
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = "51"
 app.config['SECRET_KEY'] = SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
 socketio.init_app(app)
@@ -387,4 +386,4 @@ def on_score(data):
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, host='0.0.0.0')
