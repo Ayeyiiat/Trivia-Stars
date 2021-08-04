@@ -16,7 +16,7 @@ rooms = {}
 
 @app.route("/")
 def home():
-    print('ON HOME PAGE')
+    #print('ON HOME PAGE')
     global next_que
     global question_list
     global correct_answers
@@ -47,7 +47,7 @@ def user_input():
     category = request.form.get("category")
     difficulty = request.form.get("difficulty")
     nickname = request.form.get("nickname")
-    print(nickname)
+    #print(nickname)
 
 
     # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
@@ -158,7 +158,7 @@ def quiz(room):
     category_2 = request.form.get("category")
     difficulty_2 = request.form.get("difficulty")
     nickname_2 = request.form.get("nickname")
-    print(nickname_2)
+    #print(nickname_2)
 
 
     # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
@@ -252,7 +252,7 @@ def toDict(json_data):
 def quiz(correct_answers, final_answers, question_list):
     #print("camehere")
     #start stopwatch
-    print(played_solo)
+    #print(played_solo)
     global question_name
     global start_time
     start_time = time.time()
@@ -335,11 +335,11 @@ def on_admin_disconnect():
 @socketio.on('join')
 def on_join(data):
     name = data['name']
-    print(name)
+    #print(name)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
-    print(f'{name} joined {room}')
+    #print(f'{name} joined {room}')
 
 @socketio.on('buzz')
 def on_buzz(data):
@@ -363,7 +363,7 @@ def on_create(data):
         join_room(room)
         rooms[room] = request.sid
         emit('create', True)
-        print(f'created room: {room}')
+        #print(f'created room: {room}')
 
 @socketio.on('reset')
 def on_reset(data):
