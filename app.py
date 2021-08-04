@@ -122,11 +122,9 @@ def next_question_2():
     global question_list
     global correct_answers
     global final_answers
-    #global amount
     global score
-    global new_name
-    global question_dict
     global num_done
+    global nickname_2
 
     answer = request.form.get("answers")
   
@@ -169,10 +167,7 @@ def next_question_3():
     global question_list
     global correct_answers
     global final_answers
-    #global amount
     global score
-    global new_name
-    global question_dict
     global num_done
 
     answer = request.form.get("answers")
@@ -215,10 +210,7 @@ def next_question_4():
     global question_list
     global correct_answers
     global final_answers
-    #global amount
     global score
-    global new_name
-    global question_dict
     global num_done
 
     answer = request.form.get("answers")
@@ -262,10 +254,7 @@ def next_question_5():
     global question_list
     global correct_answers
     global final_answers
-    #global amount
     global score
-    global new_name
-    global question_dict
     global num_done
 
     answer = request.form.get("answers")
@@ -548,8 +537,17 @@ def about():
 
 @app.route("/leaderboard/")
 def leaderboard():
+    #global score
+    #global nickname_2
+    # print('amount2: ', amount_2)
+    # print('num_players: ', num_players)
+    total_questions = int(amount_2) * int(num_players)
+    # print('total questions: ', total_questions)
+    percent_correct = score/float(total_questions)
+    # print('percent correct: ', percent_correct)
+    score_list = [nickname_2, score, int(amount_2), percent_correct]
+    
     meme1, meme2, meme3 = get_three_memes()
-    print(meme1)
     return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3)
 
 # @app.route("/quiz_2<room>", methods=["POST"])
