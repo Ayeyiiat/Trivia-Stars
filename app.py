@@ -63,7 +63,7 @@ def user_input():
 
     return quiz(correct_answers, final_answers, question_list)
 
-global question_list
+#global question_list
 @app.route('/next/question', methods=["POST"])
 def next_question():
     global next_que
@@ -335,7 +335,7 @@ def on_admin_disconnect():
 @socketio.on('join')
 def on_join(data):
     name = data['name']
-    #print(name)
+    print(name)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
