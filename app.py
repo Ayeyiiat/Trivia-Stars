@@ -230,6 +230,7 @@ def getJson(final_url):
 
 
 def toDict(json_data):
+    global question_list
     correct = []
     answers = []
     for value in json_data['results']:
