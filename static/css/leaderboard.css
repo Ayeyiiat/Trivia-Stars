@@ -46,18 +46,19 @@ li {
 
 .tablestuff {
     width: 75%;
-    margin: 40px 274px 40px 162px;
+    margin: 66px 227px 34px;
 }
 
 #positionimage {
     width: 804px;
     height: 268px;
-    margin: 200px 500px -40px 375px;
+    margin: -69px 0px -39px 375px;
 }
 
 table, th, td {
     border: 1px solid white;
     width: 100px;
+    border-radius: 25px;
 }
 
 
@@ -75,31 +76,35 @@ table, th, td {
     margin: 8px 27px 6px;
 }
 
-#first_place{
-    width: 40%;
-    height: 100%;
-    margin: 138px 500px -46px 706px;
+#memes {
+    justify-content: center;
+    width: 100px;
 }
 
-#second_place{
-    width: 40%;
-    height: 100%;
-    margin: -75px 500px -46px 422px;
+#memes img{
+    width: 230px;
+    height: 230px;
+    border-radius: 25px;
+}
+#first_place {
+    position: relative;
+    top: -81px;
+    right: 31px;
+    margin: 83px -301px -535px;
 }
 
-#third_place{
-    width: 40%;
-    height: 100%;
-    margin: -114px 500px -46px 985px;
+#second_place {
+    position: relative;
+    right: 185px;
+    top: 33px;
+    margin: -1px 148px -1px;
 }
 
-.memes1{
-    width: 30%;
-    height: 200px;
-
-
-
-    
+#third_place {
+    position: relative;
+    right: 14px;
+    top: -82px;
+    margin: 9px 253px -109px;
 }
 
 /* .memes2{

@@ -75,22 +75,22 @@
             <form name="answers_form" id="answers_id" method="POST" action="/next/question/9">
                 <input type="checkbox" id="answer1" name="answers" value="0">
                 <label for="answer1" id="answer1">
-                    <img src = "{{ url_for('static', filename='images/a.png') }}"> {{ answer1 }} 
+                    <img src = "{{ url_for('static', filename='images/a.png') }}"> <h4>{{ answer1 }}</h4> 
                 </label><br>
     
                 <input type="checkbox" id="answer2" name="answers" value="1">
                 <label for="answer2" id="answer2">
-                    <img src = "{{ url_for('static', filename='images/b.png') }}"> {{ answer2 }}
+                    <img src = "{{ url_for('static', filename='images/b.png') }}"> <h4>{{ answer2 }}</h4> 
                 </label><br>
     
                 <input type="checkbox" id="answer3" name="answers" value="2">
                 <label for="answer3" id="answer3"> 
-                    <img src = "{{ url_for('static', filename='images/c.png') }}"> {{ answer3 }}
+                    <img src = "{{ url_for('static', filename='images/c.png') }}"> <h4>{{ answer3 }}</h4> 
                 </label><br>
     
                 <input type="checkbox" id="answer4" name="answers" value="3">
                 <label for="answer4" id="answer4">
-                    <img src = "{{ url_for('static', filename='images/d.png') }}"> {{ answer4 }}
+                    <img src = "{{ url_for('static', filename='images/d.png') }}"><h4>{{ answer4 }}</h4> 
                 </label><br>
     
                 <button type="submit" id="form_submit">NEXT</button>     

@@ -61,7 +61,7 @@ li {
     height: 300px;
     border: 1px solid transparent;
     border-radius: 25px;
-    background-color: rgba(70, 33, 173, 0.47);
+    background-color: rgba(29, 209, 203, 0.5);
     background-size: cover;
     margin: 107px 103px 10px;
     padding: 20px;
@@ -70,9 +70,8 @@ li {
 
 #random_facts{
     width: 1300px;
-    height: 300px;
+    height: 165px;
     border-radius: 25px;
-    background-color: rgba(254, 71, 184, 0.34);
     background-size: cover;
     margin: 27px 103px 10px;
     padding: 20px;

@@ -569,12 +569,14 @@ def leaderboard():
 def quiz(room):
     global amount_2
     global nickname_2
+    global roomName
 
     categories_list = ['food_and_drink', 'art_and_literature', 'movies', 'music', 'society_and_culture', 'sport_and_leisure', 'geography']
     amount_2 = request.form.get("amount")
     category_2 = request.form.get("category")
     difficulty_2 = request.form.get("difficulty")
     nickname_2 = request.form.get("nickname")
+    roomName = request.form.get("roomName")
     #print(nickname_2)
 
 
