@@ -25,10 +25,16 @@ def home():
     global database_list
     global played_solo
     global nickname
+    global all_names
+    global question_dict
+    global score_dict
     played_solo = False
     next_que = 0
     amount = 0
     score = 0
+    question_dict = {}
+    score_dict = {}
+    all_names = []
     question_list = []
     final_answers = []
     correct_answers = []
@@ -61,25 +67,29 @@ def user_input():
         correct_answers, final_answers, question_list = toDict(Json)
     
 
-    return quiz(correct_answers, final_answers, question_list)
+    return quiz_page(correct_answers, final_answers, question_list)
 
 #global question_list
 @app.route('/next/question', methods=["POST"])
 def next_question():
     global next_que
-    #global question_list
+    global question_list
     global correct_answers
     global final_answers
-    #global amount
+    global amount
     global score
 
-    answer = request.form.get("answers")
+    
+    if played_solo:
+
+        answer = request.form.get("answers")
+
 
     if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
         print(final_answers[next_que][int(answer)])
         print(correct_answers[next_que])
         score += 1
-    
+
     print('NEXT QUE: ', next_que)
     print('AMOUNT ', amount)
     if int(next_que + 1) == int(amount):
@@ -88,7 +98,7 @@ def next_question():
         link = "/display_score/" + str(score) + str(amount)
         return redirect(link)
         # print(score)
-        
+
     next_que += 1
     print('SHOULD START AT 1', next_que)
     print('final answers: ')
@@ -96,7 +106,7 @@ def next_question():
     question_name = question_list[next_que]
 
     return render_template(
-        'quiz.html',
+        'solo_quiz.html',
         question=str(
         next_que + 1) + ") " + html.unescape(question_name),
         answer1=html.unescape(
@@ -107,7 +117,371 @@ def next_question():
         final_answers[next_que][2]),
         answer4=html.unescape(
         final_answers[next_que][3]))
+
+
+@app.route('/next/question/2', methods=["POST"])
+def next_question_2():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+  
+
+    if(final_answers[1][int(answer)] == correct_answers[1]):
+        print(final_answers[1][int(answer)])
+        print(correct_answers[1])
+        score += 1
     
+    if int(amount_2) == 1:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[1]
+
+    return render_template(
+        'quiz2.html',
+        question="2) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[1][0]),
+        answer2=html.unescape(
+        final_answers[1][1]),
+        answer3=html.unescape(
+        final_answers[1][2]),
+        answer4=html.unescape(
+        final_answers[1][3]))
+
+        
+@app.route('/next/question/3', methods=["POST"])
+def next_question_3():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[2][int(answer)] == correct_answers[2]):
+        print(final_answers[2][int(answer)])
+        print(correct_answers[2])
+        score += 1
+    
+    if int(amount_2) == 2:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[2]
+
+    return render_template(
+        'quiz3.html',
+        question="3) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[2][0]),
+        answer2=html.unescape(
+        final_answers[2][1]),
+        answer3=html.unescape(
+        final_answers[2][2]),
+        answer4=html.unescape(
+        final_answers[2][3]))
+
+
+@app.route('/next/question/4', methods=["POST"])
+def next_question_4():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[3][int(answer)] == correct_answers[3]):
+        print(final_answers[3][int(answer)])
+        print(correct_answers[3])
+        score += 1
+    
+    if int(amount_2) == 3:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[3]
+
+    return render_template(
+        'quiz4.html',
+        question="4) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[3][0]),
+        answer2=html.unescape(
+        final_answers[3][1]),
+        answer3=html.unescape(
+        final_answers[3][2]),
+        answer4=html.unescape(
+        final_answers[3][3]))
+
+@app.route('/next/question/5', methods=["POST"])
+def next_question_5():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[4][int(answer)] == correct_answers[4]):
+        print(final_answers[4][int(answer)])
+        print(correct_answers[4])
+        score += 1
+
+    if int(amount_2) == 4:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[4]
+
+    return render_template(
+        'quiz5.html',
+        question="5) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[4][0]),
+        answer2=html.unescape(
+        final_answers[4][1]),
+        answer3=html.unescape(
+        final_answers[4][2]),
+        answer4=html.unescape(
+        final_answers[4][3]))
+
+@app.route('/next/question/6', methods=["POST"])
+def next_question_6():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[5][int(answer)] == correct_answers[5]):
+        print(final_answers[5][int(answer)])
+        print(correct_answers[5])
+        score += 1
+    
+    if int(amount_2) == 5:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[5]
+
+    return render_template(
+        'quiz6.html',
+        question="6) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[5][0]),
+        answer2=html.unescape(
+        final_answers[5][1]),
+        answer3=html.unescape(
+        final_answers[5][2]),
+        answer4=html.unescape(
+        final_answers[5][3]))
+
+@app.route('/next/question/7', methods=["POST"])
+def next_question_7():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[6][int(answer)] == correct_answers[6]):
+        print(final_answers[6][int(answer)])
+        print(correct_answers[6])
+        score += 1
+    
+    if int(amount_2) == 6:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[6]
+
+    return render_template(
+        'quiz7.html',
+        question="7) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[6][0]),
+        answer2=html.unescape(
+        final_answers[6][1]),
+        answer3=html.unescape(
+        final_answers[6][2]),
+        answer4=html.unescape(
+        final_answers[6][3]))
+
+@app.route('/next/question/8', methods=["POST"])
+def next_question_8():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[7][int(answer)] == correct_answers[7]):
+        print(final_answers[7][int(answer)])
+        print(correct_answers[7])
+        score += 1
+    
+    if int(amount_2) == 7:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[7]
+
+    return render_template(
+        'quiz8.html',
+        question="8) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[7][0]),
+        answer2=html.unescape(
+        final_answers[7][1]),
+        answer3=html.unescape(
+        final_answers[7][2]),
+        answer4=html.unescape(
+        final_answers[7][3]))
+
+@app.route('/next/question/9', methods=["POST"])
+def next_question_9():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[8][int(answer)] == correct_answers[8]):
+        print(final_answers[8][int(answer)])
+        print(correct_answers[8])
+        score += 1
+    
+    if int(amount_2) == 8:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[8]
+
+    return render_template(
+        'quiz9.html',
+        question="9) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[8][0]),
+        answer2=html.unescape(
+        final_answers[8][1]),
+        answer3=html.unescape(
+        final_answers[8][2]),
+        answer4=html.unescape(
+        final_answers[8][3]))
+
+@app.route('/next/question/10', methods=["POST"])
+def next_question_10():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    answer = request.form.get("answers")
+
+    if(final_answers[9][int(answer)] == correct_answers[9]):
+        print(final_answers[9][int(answer)])
+        print(correct_answers[9])
+        score += 1
+    
+    if int(amount) == 9:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount_2)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[9]
+
+    return render_template(
+        'quiz10.html',
+        question="10) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[9][0]),
+        answer2=html.unescape(
+        final_answers[9][1]),
+        answer3=html.unescape(
+        final_answers[9][2]),
+        answer4=html.unescape(
+        final_answers[9][3]))
+
 @app.route("/display_score/<score><amount>")
 def display_score(score, amount):
     global nickname
@@ -173,7 +547,7 @@ def quiz(room):
         correct_answers, final_answers, question_list = toDict(Json)
     
 
-    return quiz(correct_answers, final_answers, question_list)
+    return quiz_page(correct_answers, final_answers, question_list)
 
 
 
@@ -181,10 +555,8 @@ def getNewUrl(amount,category):
     print('MADE IT TO GET NEW URL')
     base_url = 'https://trivia.willfry.co.uk/api/questions?'
     final_url = base_url + 'limit=' + str(amount)
-    # print('before, ', final_url)
     if category != 'default_c':
         final_url = base_url + 'categories=' + category + '&limit=' + str(amount)
-        # print(final_url)
     return final_url
 
 
@@ -199,7 +571,6 @@ def newToDict(json):
     answers = []
     temp_list = []
     for value in json:
-        #print(value['question'])
         question_list.append(value['question'])
         correct_answers.append(value['correctAnswer'])
         correct = value['correctAnswer']
@@ -214,7 +585,7 @@ def newToDict(json):
 def getUrl(amount, category, difficulty):
     Base_url = 'https://opentdb.com/api.php?amount=' + str(amount)
     final_url = Base_url
-    # categoryA
+   
     if category != 'default_c':
         final_url = final_url + '&category=' + str(category)
     
@@ -242,14 +613,12 @@ def toDict(json_data):
         answers.append(correct)
         random.shuffle(answers)
         final_answers.append(answers)
-    print('q list ', question_list)
-    # print('f answers ', final_answers)
-    # print('c list' , correct_list)
+    #print('q list ', question_list)
 
     return correct_answers, final_answers, question_list
 
 
-def quiz(correct_answers, final_answers, question_list):
+def quiz_page(correct_answers, final_answers, question_list):
     #print("camehere")
     #start stopwatch
     #print(played_solo)
@@ -261,7 +630,7 @@ def quiz(correct_answers, final_answers, question_list):
     if played_solo == True:
         print("solo")
         return render_template(
-        'quiz.html',
+        'solo_quiz.html',
         question='1) ' +
         html.unescape(question_name),
         answer1=html.unescape(
@@ -294,24 +663,19 @@ def example(question_name):
 
 @app.route("/quiz_2")
 def quiz_2():
-    return quiz(correct_answers, final_answers, question_list)
-    # return render_template(
-    #     'quiz.html',
-    #     question='1) ' +
-    #     html.unescape(question_name),
-    #     answer1=html.unescape(
-    #         final_answers[0][0]),
-    #     answer2=html.unescape(
-    #         final_answers[0][1]),
-    #     answer3=html.unescape(
-    #         final_answers[0][2]),
-    #     answer4=html.unescape(
-    #         final_answers[0][3]))
-
-next_que = 0
-score = 0
-
-
+    return quiz_page(correct_answers, final_answers, question_list)
+#     # return render_template(
+#     #     'quiz.html',
+#     #     question='1) ' +
+#     #     html.unescape(question_name),
+#     #     answer1=html.unescape(
+#     #         final_answers[0][0]),
+#     #     answer2=html.unescape(
+#     #         final_answers[0][1]),
+#     #     answer3=html.unescape(
+#     #         final_answers[0][2]),
+#     #     answer4=html.unescape(
+#     #         final_answers[0][3]))
 
 def is_admin(id, room):
     return rooms[room] == id
@@ -334,12 +698,17 @@ def on_admin_disconnect():
 
 @socketio.on('join')
 def on_join(data):
-    name = data['name']
-    print(name)
+    #global all_names
+    global question_dict
+    global new_name
+    new_name = data['name']
+    #all_names.append(new_name)
+    question_dict[new_name] = 0
+    print('question_dict: ', question_dict)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
-    #print(f'{name} joined {room}')
+    print(f'{new_name} joined {room}')
 
 @socketio.on('buzz')
 def on_buzz(data):
