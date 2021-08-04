@@ -3,13 +3,9 @@ from operator import itemgetter
 
 
 def leaderboard_data(data_input):
-   with open('score_keep.csv', 'a') as csvfile:
-   
-     fieldnames = ['name', 'score', 'amount', 'percent']
-     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-         
-     for row in data_input:
-        writer.writerow({'name': row[0], 'score': row[1], 'amount': row[2], 'percent': row[3]})
+   with open('score_keep.csv', 'a', newline='') as csvfile:
+      wr = csv.writer(csvfile, dialect='excel')
+      wr.writerow(data_input)
 
          
 def sort_score_list():
@@ -18,7 +14,7 @@ def sort_score_list():
     unsorted_data = []
     change_toInt = []
     for row in readCSV:
-      change_toInt = [row[0], int(row[1]), int(row[2]), float(row[3])]
+      change_toInt = [row[0], row[1], row[2], row[3]]
       unsorted_data.append(change_toInt)
       
 #     print(unsorted_data)
@@ -33,10 +29,12 @@ def reset_score_sheet():
    f.close()
    
 
-#liste = [['name1', 5, 1, 13.58], ['name2', 7, 10, 45.68], ['name3', 1, 10, 90.48]]   
+liste = ['name1', 5, 1, 13.58]
+list2 = ['name2', 6, 2, 10.2]
 
-#leaderboard_data(liste)
+leaderboard_data(liste)
+leaderboard_data(list2)
 
-#sort_score_list()
+print(sort_score_list())
 
 #reset_score_sheet()
