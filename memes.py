@@ -1,5 +1,4 @@
 import requests
-from textblob import TextBlob
 import random
 
 def get_three_memes():
