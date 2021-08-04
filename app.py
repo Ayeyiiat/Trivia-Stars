@@ -63,10 +63,11 @@ def user_input():
 
     return quiz(correct_answers, final_answers, question_list)
 
+global question_list
 @app.route('/next/question', methods=["POST"])
 def next_question():
     global next_que
-    global question_list
+    #global question_list
     global correct_answers
     global final_answers
     #global amount
