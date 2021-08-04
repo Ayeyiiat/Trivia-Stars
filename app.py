@@ -546,18 +546,27 @@ def leaderboard():
     # print('total questions: ', total_questions)
     percent_correct = score/float(total_questions)
     # print('percent correct: ', percent_correct)
-    score_list = [roomName, score, int(total_questions), percent_correct]
+    score_list = [roomName, score, int(total_questions), round(percent_correct, 2)]
     leaderboard_data(score_list)
     new_list = sort_score_list()
     print(new_list)
     name1 = new_list[0][0]
-    score1 = new_list[0][1]
+    score1 = new_list[0][1] + '/' + new_list[0][2]
+    p1 = float(new_list[0][3]) * 100
     name2 = new_list[1][0]
-    score2 = new_list[1][1]
+    score2 = new_list[1][1] + '/' + new_list[1][2]
+    p2 = float(new_list[1][3]) * 100
     name3 = new_list[2][0]
-    score3 = new_list[2][1]  
+    score3 = new_list[2][1] + '/' + new_list[2][2] 
+    p3 = float(new_list[2][3]) * 100
+    name4 = new_list[3][0]
+    score4 = new_list[3][1] + '/' + new_list[3][2]
+    p4 = float(new_list[3][3]) * 100
+    name5 = new_list[4][0] 
+    score5 = new_list[4][1] + '/' + new_list[4][2]
+    p5 = float(new_list[4][3]) * 100
     meme1, meme2, meme3 = get_three_memes()
-    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3, Player_1 = name2, Score_1 = score1, Player_2 = name2, Score_2 = score2, Player_3 = name3, Score_3 = score3 )
+    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3, Player_1 = name2, Score_1 = score1, p1 = str(p1) + '%', Player_2 = name2, Score_2 = score2, p2=str(p2) + '%', Player_3 = name3, Score_3 = score3, p3=str(p3) + '%', Player_4 = name4, Score_4 = score4, p4 = str(p4) + '%', Player_5 = name5, Score_5 = score5, p5=str(p5) + '%') 
 
 # @app.route("/quiz_2<room>", methods=["POST"])
 # def quiz_2(room):
