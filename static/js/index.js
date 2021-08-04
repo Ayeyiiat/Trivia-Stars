@@ -41,6 +41,7 @@ var $newRoomField = $('#createCodeInput')
 var $beginButton = $('#begin')
 var $panel = $('#panel')
 var newData = { room: null }
+var count = 0
 
 
 $('body').addClass('body--admin')
@@ -86,26 +87,84 @@ $beginButton.on('click', async function() {
 });
 
 
+socket.on('join', function(newData) {
+    count++
+    //$roomCount.text(count === 1 ? count + ' person' : count + ' people')
+    //$leaderboard.append(`<li class="panel__header">${data.name}<span>0</span></li>`)
+    //leaderboard[data.name] = 0
+})
+
+
 //Join game session
 var $joinForm = $('#join_game_id')
 var $roomField = $('#gameCodeInput')
-var data = { room: null }
+var $name = $('#name')
+var data = {
+    room: $roomField, // get the first path
+    name: $name
+}
+
+
 $('body').addClass('center')
 
 $joinForm.on('submit', function(event) {
   event.preventDefault()
   data.room = $roomField.val()
+  data.name = $name.val()
   
   socket.emit('exists', data)
 })
 
 socket.on('exists', function(exists) {
   if (exists) {
-    window.location = '/quiz' + data.room
+      socket.emit('join', data);
+      alert("You have joined a room. Wait for moderator to begin game");
+      socket.emit('begin', data);
+      $.ajax({
+        url: "/quiz_2",
+        success: function(response) {
+            window.location.href = response.redirect
+        }
+      });
+
+      //window.location.href = '/quiz_2'
+
+
+    /*var data = $joinForm.serialize();
+
+    //$.post( "/quiz" + newData, data);
+
+    $.ajax({
+        url: "/quiz_2" + newData,
+        type: "POST",
+        data:data,
+        dataType: "json",
+        success: function(response) {
+            window.location.href = response.redirect
+        }
+    });*/
+
   }
   else {
     alert('That game doesn\'t exist!')
   }
 })
 
-//join game session 
+//start game session 
+//socket.on('begin', function() {
+
+    /*var data = $startForm.serialize();
+
+    //$.post( "/quiz" + newData, data);
+
+    $.ajax({
+        url: "/quiz" + newData,
+        type: "POST",
+        data:data,
+        dataType: "json",
+        success: function(response) {
+            window.location.href = response.redirect
+        }
+    });
+    // $state.hide()*/
+//.})

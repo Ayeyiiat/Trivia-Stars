@@ -1,13 +1,12 @@
 from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
-import os
 import requests
 import random
 import html
 import time
 
 app = Flask(__name__)
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = "51"
 app.config['SECRET_KEY'] = SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
 socketio.init_app(app)
@@ -16,7 +15,7 @@ rooms = {}
 
 @app.route("/")
 def home():
-    print('ON HOME PAGE')
+    #print('ON HOME PAGE')
     global next_que
     global question_list
     global correct_answers
@@ -40,13 +39,14 @@ def home():
 def user_input():
     global amount
     global nickname
+    global played_solo
     played_solo = True
     categories_list = ['food_and_drink', 'art_and_literature', 'movies', 'music', 'society_and_culture', 'sport_and_leisure', 'geography']
     amount = request.form.get("amount")
     category = request.form.get("category")
     difficulty = request.form.get("difficulty")
     nickname = request.form.get("nickname")
-    print(nickname)
+    #print(nickname)
 
 
     # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
@@ -63,10 +63,11 @@ def user_input():
 
     return quiz(correct_answers, final_answers, question_list)
 
+#global question_list
 @app.route('/next/question', methods=["POST"])
 def next_question():
     global next_que
-    global question_list
+    #global question_list
     global correct_answers
     global final_answers
     #global amount
@@ -134,6 +135,19 @@ def leaderboard():
 
     return render_template('leaderboard.html')
 
+# @app.route("/quiz_2<room>", methods=["POST"])
+# def quiz_2(room):
+#     global join_nickname
+#     join_nickname = request.form.get("nickname")
+#     return jsonify({'redirect': url_for("example_2", nickname=nickname)})
+
+# @app.route('/example_2/<nickname>')
+# def example_2(nickname):
+#     return render_template("quiz.html")
+# @app.route("/quiz_2")
+# def quiz_2():
+#     return render_template("quiz.html")
+
 @app.route("/quiz<room>", methods=["POST"])
 def quiz(room):
     global amount_2
@@ -144,7 +158,7 @@ def quiz(room):
     category_2 = request.form.get("category")
     difficulty_2 = request.form.get("difficulty")
     nickname_2 = request.form.get("nickname")
-    print(nickname_2)
+    #print(nickname_2)
 
 
     # if the category is food and drink, art and literature, movies, music, science, society and culture or sport and leisure use second api
@@ -238,11 +252,29 @@ def toDict(json_data):
 def quiz(correct_answers, final_answers, question_list):
     #print("camehere")
     #start stopwatch
+    #print(played_solo)
+    global question_name
     global start_time
     start_time = time.time()
     question_name = question_list[0]
 
-    return jsonify({'redirect': url_for("example", question_name=question_name)})
+    if played_solo == True:
+        print("solo")
+        return render_template(
+        'quiz.html',
+        question='1) ' +
+        html.unescape(question_name),
+        answer1=html.unescape(
+            final_answers[0][0]),
+        answer2=html.unescape(
+            final_answers[0][1]),
+        answer3=html.unescape(
+            final_answers[0][2]),
+        answer4=html.unescape(
+            final_answers[0][3]))
+    else:
+        print("notsolo")
+        return jsonify({'redirect': url_for("example", question_name=question_name)})
 
 @app.route('/example/<question_name>')
 def example(question_name):
@@ -260,6 +292,21 @@ def example(question_name):
         answer4=html.unescape(
             final_answers[0][3]))
 
+@app.route("/quiz_2")
+def quiz_2():
+    return quiz(correct_answers, final_answers, question_list)
+    # return render_template(
+    #     'quiz.html',
+    #     question='1) ' +
+    #     html.unescape(question_name),
+    #     answer1=html.unescape(
+    #         final_answers[0][0]),
+    #     answer2=html.unescape(
+    #         final_answers[0][1]),
+    #     answer3=html.unescape(
+    #         final_answers[0][2]),
+    #     answer4=html.unescape(
+    #         final_answers[0][3]))
 
 next_que = 0
 score = 0
@@ -288,10 +335,11 @@ def on_admin_disconnect():
 @socketio.on('join')
 def on_join(data):
     name = data['name']
+    print(name)
     room = data['room']
     join_room(room)
     emit('join', data, room=room)
-    print(f'{name} joined {room}')
+    #print(f'{name} joined {room}')
 
 @socketio.on('buzz')
 def on_buzz(data):
@@ -315,7 +363,7 @@ def on_create(data):
         join_room(room)
         rooms[room] = request.sid
         emit('create', True)
-        print(f'created room: {room}')
+        #print(f'created room: {room}')
 
 @socketio.on('reset')
 def on_reset(data):
@@ -324,11 +372,11 @@ def on_reset(data):
     if is_admin(request.sid, room):
         emit('reset', room=room)
 
-#@socketio.on('begin')
-#def on_begin(data):
-    #room = data['room']
-    #if is_admin(request.sid, room):
-        #emit('begin', room=room)
+@socketio.on('begin')
+def on_begin(data):
+    room = data['room']
+    if is_admin(request.sid, room):
+        emit('begin', room=room)
 
 @socketio.on('score')
 def on_score(data):
@@ -339,6 +387,5 @@ def on_score(data):
 
 
 if __name__ == '__main__':
-    #app.run(debug=True)
-    socketio.run(app, debug=True)
-    
+    socketio.run(app, debug=True, host='0.0.0.0')
+

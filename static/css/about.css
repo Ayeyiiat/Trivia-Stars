@@ -64,6 +64,8 @@ li {
     background-color: rgba(70, 33, 173, 0.47);
     background-size: cover;
     margin: 107px 103px 10px;
+    padding: 20px;
+    text-align: center;
 }
 
 #random_facts{
@@ -73,6 +75,8 @@ li {
     background-color: rgba(254, 71, 184, 0.34);
     background-size: cover;
     margin: 27px 103px 10px;
+    padding: 20px;
+    text-align: center;
 }
 
 #team_info{
@@ -118,7 +122,7 @@ h1 {
 
 p {
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
     color: #e37719;
     text-decoration: none solid rgb(227, 119, 25);
 }

@@ -24,6 +24,7 @@ audio {
     width: 27rem;
     margin: 0rem 9.5rem 21px;
     border-radius: 20px;
+    
 }
 
 #play {
@@ -34,6 +35,7 @@ audio {
     height: 37rem;
     margin-top: 34px;
     justify-content: center;
+    opacity: 0.6;
 }
 
 ul {
