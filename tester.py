@@ -22,16 +22,26 @@ class BasicTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         
     '''def test_main_page(self):
-        response = self.app.get('/leaderboard', follow_redirects=True)
+        response = self.app.get('/leaderboard/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)'''
       
     '''def test_main_page(self):
         response = self.app.get('/quiz<room>', follow_redirects=True)
         self.assertEqual(response.status_code, 200)'''
 
-    '''def test_main_page(self):
+    ''' def test_main_page(self):
         response = self.app.get('/solo/game', follow_redirects=True)
         self.assertEqual(response.status_code, 200)'''
+   
+    def test_main_page(self):
+        response = self.app.get('/display_score/11', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+    
+    '''def test_main_page(self):
+        response = self.app.get('/next/question', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)'''
+
+        
         
     
 if __name__ == "__main__":
