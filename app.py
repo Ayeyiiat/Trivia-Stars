@@ -1,6 +1,6 @@
-from memes import get_three_memes
 from flask import Flask, render_template, redirect, request, jsonify, url_for
 from flask_socketio import SocketIO, emit, join_room
+from memes import get_three_memes
 import requests
 import random
 import html
@@ -548,8 +548,9 @@ def about():
 
 @app.route("/leaderboard/")
 def leaderboard():
-    meme = get_three_memes()
-    return render_template('leaderboard.html', first_place = meme[0], second_place = meme[1], third_place = meme[2])
+    meme1, meme2, meme3 = get_three_memes()
+    print(meme1)
+    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3)
 
 # @app.route("/quiz_2<room>", methods=["POST"])
 # def quiz_2(room):
