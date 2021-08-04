@@ -96,9 +96,52 @@ def quiz_page(correct_answers, final_answers, question_list):
         print("notsolo")
         return jsonify({'redirect': url_for("example", question_name=question_name)})
 
+@app.route('/next/question/', methods=["POST"])
+def next_question():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+    
+    if played_solo:
+
+        answer = request.form.get("answers")
+
+
+        # if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+        #     print(final_answers[next_que][int(answer)])
+        #     print(correct_answers[next_que])
+        #     score += 1
+
+        if int(amount) == 1:
+            print('NEXT QUE: in if ', next_que)
+            print('\n\n\nLAST QUESTION\n\n\n\n')
+            link = "/display_score/" + str(score) + str(amount)
+            return redirect(link)
+            # print(score)
+            
+        print(final_answers)
+        question_name = question_list[1]
+
+        return render_template(
+            'quiz2.html',
+            question="2) " + html.unescape(question_name),
+            answer1=html.unescape(
+            final_answers[1][0]),
+            answer2=html.unescape(
+            final_answers[1][1]),
+            answer3=html.unescape(
+            final_answers[1][2]),
+            answer4=html.unescape(
+            final_answers[1][3]))
+
 
 @app.route('/next/question/2', methods=["POST"])
-def next_question():
+def next_question_2():
     global next_que
     global question_list
     global correct_answers
@@ -116,7 +159,7 @@ def next_question():
     #     print(correct_answers[next_que])
     #     score += 1
     
-    if int(amount) == 1:
+    if int(amount_2) == 1:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/display_score/" + str(score) + str(amount)
@@ -157,7 +200,7 @@ def next_question_3():
     #     print(correct_answers[next_que])
     #     score += 1
     
-    if int(amount) == 2:
+    if int(amount_2) == 2:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/display_score/" + str(score) + str(amount)
@@ -198,7 +241,7 @@ def next_question_4():
     #     print(correct_answers[next_que])
     #     score += 1
     
-    if int(amount) == 3:
+    if int(amount_2) == 3:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/display_score/" + str(score) + str(amount)
@@ -238,7 +281,7 @@ def next_question_5():
     #     print(correct_answers[next_que])
     #     score += 1
 
-    if int(amount) == 4:
+    if int(amount_2) == 4:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/display_score/" + str(score) + str(amount)
@@ -276,7 +319,7 @@ def next_question_6():
     #     print(correct_answers[next_que])
     #     score += 1
     
-    if int(amount) == 5:
+    if int(amount_2) == 5:
         print('NEXT QUE: in if ', next_que)
         print('\n\n\nLAST QUESTION\n\n\n\n')
         link = "/display_score/" + str(score) + str(amount)
@@ -297,7 +340,159 @@ def next_question_6():
         final_answers[5][2]),
         answer4=html.unescape(
         final_answers[5][3]))
+
+@app.route('/next/question/7', methods=["POST"])
+def next_question_7():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    # if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+    #     print(final_answers[next_que][int(answer)])
+    #     print(correct_answers[next_que])
+    #     score += 1
     
+    if int(amount_2) == 6:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[6]
+
+    return render_template(
+        'quiz7.html',
+        question="7) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[6][0]),
+        answer2=html.unescape(
+        final_answers[6][1]),
+        answer3=html.unescape(
+        final_answers[6][2]),
+        answer4=html.unescape(
+        final_answers[6][3]))
+
+@app.route('/next/question/8', methods=["POST"])
+def next_question_8():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    # if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+    #     print(final_answers[next_que][int(answer)])
+    #     print(correct_answers[next_que])
+    #     score += 1
+    
+    if int(amount_2) == 7:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[7]
+
+    return render_template(
+        'quiz8.html',
+        question="8) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[7][0]),
+        answer2=html.unescape(
+        final_answers[7][1]),
+        answer3=html.unescape(
+        final_answers[7][2]),
+        answer4=html.unescape(
+        final_answers[7][3]))
+
+@app.route('/next/question/9', methods=["POST"])
+def next_question_9():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    # if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+    #     print(final_answers[next_que][int(answer)])
+    #     print(correct_answers[next_que])
+    #     score += 1
+    
+    if int(amount_2) == 8:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[8]
+
+    return render_template(
+        'quiz9.html',
+        question="9) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[8][0]),
+        answer2=html.unescape(
+        final_answers[8][1]),
+        answer3=html.unescape(
+        final_answers[8][2]),
+        answer4=html.unescape(
+        final_answers[8][3]))
+
+@app.route('/next/question/10', methods=["POST"])
+def next_question_10():
+    global next_que
+    global question_list
+    global correct_answers
+    global final_answers
+    #global amount
+    global score
+    global new_name
+    global question_dict
+
+    # if(final_answers[next_que][int(answer)] == correct_answers[next_que]):
+    #     print(final_answers[next_que][int(answer)])
+    #     print(correct_answers[next_que])
+    #     score += 1
+    
+    if int(amount) == 9:
+        print('NEXT QUE: in if ', next_que)
+        print('\n\n\nLAST QUESTION\n\n\n\n')
+        link = "/display_score/" + str(score) + str(amount)
+        return redirect(link)
+        # print(score)
+        
+    print(final_answers)
+    question_name = question_list[9]
+
+    return render_template(
+        'quiz10.html',
+        question="10) " + html.unescape(question_name),
+        answer1=html.unescape(
+        final_answers[9][0]),
+        answer2=html.unescape(
+        final_answers[9][1]),
+        answer3=html.unescape(
+        final_answers[9][2]),
+        answer4=html.unescape(
+        final_answers[9][3]))
+
 @app.route("/display_score/<score><amount>")
 def display_score(score, amount):
     global nickname
