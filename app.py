@@ -496,7 +496,7 @@ def next_question_10():
         if num_done == num_players:
             return redirect(link)
         else:
-            return '<script>alert("Please wait for the other players")</script>'
+            return '<script>alert("Please wait for the other players");window.open("/next/question/10");</script>'
         # print(score)
         
     print(final_answers)

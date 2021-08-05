@@ -11,7 +11,7 @@ def get_three_memes():
       
      
     #api request is made
-    url =  'https://meme-api.herokuapp.com/gimme/' + subreddit_name + '/20'
+    url =  'https://meme-api.herokuapp.com/gimme/' + subreddit_name + '/10'
     response = requests.get(url)
     data = response.json()
       
@@ -20,7 +20,7 @@ def get_three_memes():
     sorted_ups = {}    
        
     #range of how many memes are called  
-    for x in range(0, 15):
+    for x in range(0, 5):
      
        jpgLink = data['memes'][x]['url']
        is_nsfw = data['memes'][x]['nsfw']
