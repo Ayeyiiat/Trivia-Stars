@@ -20,7 +20,7 @@ def get_three_memes():
     sorted_ups = {}    
        
     #range of how many memes are called  
-    for x in range(0, 18):
+    for x in range(0, 15):
      
        jpgLink = data['memes'][x]['url']
        is_nsfw = data['memes'][x]['nsfw']

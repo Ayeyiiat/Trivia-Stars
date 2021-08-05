@@ -5,7 +5,7 @@ body, html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Poppins-Regular, sans-serif;
-    color: #e37719;
+    color: white;
     text-decoration: none solid rgb(227, 119, 25);
     text-align: center;
 }
@@ -13,7 +13,6 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     background-color: #2d0250;
     padding: 0px;
-    border-radius: 25px;
 
 }
 
@@ -52,7 +51,7 @@ li {
 #positionimage {
     width: 804px;
     height: 268px;
-    margin: -69px 0px -39px 375px;
+    margin: -197px 0px -41px 375px;
 }
 
 table, th, td {
@@ -84,27 +83,41 @@ table, th, td {
 #memes img{
     width: 230px;
     height: 230px;
-    border-radius: 25px;
 }
-#first_place {
+#second_place {
     position: relative;
-    top: -81px;
-    right: 31px;
+    top: -99px;
+    right: 28px;
     margin: 83px -301px -535px;
 }
 
-#second_place {
+#first_place {
     position: relative;
     right: 185px;
-    top: 33px;
+    top: -31px;
     margin: -1px 148px -1px;
 }
 
 #third_place {
     position: relative;
     right: 14px;
-    top: -82px;
+    top: -212px;
     margin: 9px 253px -109px;
+}
+
+#name1 {
+    position: relative;
+    top: -15px;
+}
+#name2 {
+    position: relative;
+    right: 250px;
+    top: 327px;
+}
+#name3 {
+    position: relative;
+    left: 248px;
+    top: -86px;
 }
 
 /* .memes2{
