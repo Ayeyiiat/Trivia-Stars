@@ -565,8 +565,8 @@ def leaderboard():
     name5 = new_list[4][0] 
     score5 = new_list[4][1] + '/' + new_list[4][2]
     p5 = float(new_list[4][3]) * 100
-    meme1, meme2, meme3 = get_three_memes()
-    return render_template('leaderboard.html', meme1 = meme1, meme2 = meme2, meme3 = meme3, Player_1 = name1, Score_1 = score1, p1 = str(p1) + '%', Player_2 = name2, Score_2 = score2, p2=str(p2) + '%', Player_3 = name3, Score_3 = score3, p3=str(p3) + '%', Player_4 = name4, Score_4 = score4, p4 = str(p4) + '%', Player_5 = name5, Score_5 = score5, p5=str(p5) + '%') 
+    #meme1, meme2, meme3 = get_three_memes()
+    return render_template('leaderboard.html', Player_1 = name1, Score_1 = score1, p1 = str(p1) + '%', Player_2 = name2, Score_2 = score2, p2=str(p2) + '%', Player_3 = name3, Score_3 = score3, p3=str(p3) + '%', Player_4 = name4, Score_4 = score4, p4 = str(p4) + '%', Player_5 = name5, Score_5 = score5, p5=str(p5) + '%') 
 
 # @app.route("/quiz_2<room>", methods=["POST"])
 # def quiz_2(room):
