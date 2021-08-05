@@ -23,6 +23,7 @@ Chuck Palahniuk:
    * Yadel Negash
    * Fadlalla Musa
    * Aj Mauney
+   * Divine Akinjiyan
       
 
 ## Contact Information
@@ -33,6 +34,7 @@ Isaac Ayeyi Turkson | iturkson@u.rochester.edu
 Yadel Negash        | yadelnegash10@gmail.com
 Fadlalla Musa       | fadlalla2000@gmail.com
 Aj Mauney           | barca.aj@gmail.com
+Divine Akinjiyan    | divine.akinjiyan@gmail.com
 
 ## License
 [GNU GPL](license)
